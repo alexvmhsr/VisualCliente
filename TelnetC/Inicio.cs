@@ -16,11 +16,11 @@ namespace TelnetC
 {
     public partial class Inicio : Form
     {
+        public String IP;
+        public int puerto;
         public Inicio()
         {
             InitializeComponent();
-           
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,8 +31,8 @@ namespace TelnetC
         private void btn_Probar_Click(object sender, EventArgs e)
         {
 
-            String IP = txtIP.Text.ToString();
-            int puerto = int.Parse(txtPuerto.Text);
+            IP = txtIP.Text.ToString();
+            puerto = int.Parse(txtPuerto.Text);
 
             if(Conectar(IP,puerto).Equals(true))
             {
@@ -50,6 +50,7 @@ namespace TelnetC
         }
         public static Boolean Conectar(String IP,int puerto)
         {
+
             Socket Distri = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             // paso 2 - creamos el socket
             IPEndPoint miDireccion = new IPEndPoint(IPAddress.Parse(IP), puerto);
@@ -76,7 +77,7 @@ namespace TelnetC
 
         private void btn_Ingresar_Click(object sender, EventArgs e)
         {
-            String IP = txtIP.Text.ToString();
+            IP = txtIP.Text.ToString();
             int puerto = int.Parse(txtPuerto.Text);
         
             NetworkStream Stm = null;
@@ -98,6 +99,10 @@ namespace TelnetC
                     Stm.Write(bufferEscritura, 0, bufferEscritura.Length);
                 }
             }
+            tcpClnt.Close();
+            Autentificacion au = new Autentificacion();
+          
+            au.Show();
 
          
         }
