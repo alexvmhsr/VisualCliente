@@ -50,12 +50,17 @@
     <Compile Include="Autentificacion.Designer.cs">
       <DependentUpon>Autentificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\AutenticacionRQ.cs" />
+    <Compile Include="Clases\Cabecera.cs" />
+    <Compile Include="Clases\Cuerpo.cs" />
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Mensaje.cs" />
+    <Compile Include="Clases\MensajeRQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Autentificacion.resx">
