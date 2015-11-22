@@ -52,7 +52,16 @@
     </Compile>
     <Compile Include="Clases\AutenticacionRQ.cs" />
     <Compile Include="Clases\Cabecera.cs" />
+    <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Cuerpo.cs" />
+    <Compile Include="Clases\InformacionClienteRQ.cs" />
+    <Compile Include="Clases\InformacionFacturaRQ.cs" />
+    <Compile Include="Clases\InformacionProductoRQ.cs" />
+    <Compile Include="Clases\IngresarClienteRQ.cs" />
+    <Compile Include="Clases\IngresarFacturaRQ.cs" />
+    <Compile Include="Clases\IngresarProductoRQ.cs" />
+    <Compile Include="Clases\Originador.cs" />
+    <Compile Include="Clases\validaClienteRQ.cs" />
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>

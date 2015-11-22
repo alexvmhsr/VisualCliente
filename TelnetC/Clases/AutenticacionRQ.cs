@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace TelnetC.Clases
 {
-    class AutenticacionRQ
-    {
+    class AutenticacionRQ :  Cuerpo{
     private String usuario;
 	private String clave;
 	
@@ -26,9 +25,9 @@ namespace TelnetC.Clases
 	}
 	
 
-	public String asTexto() {
-		// TODO Auto-generated method stub
-		return this.usuario + this.clave;
-	}
+    string Cuerpo.asTexto()
+    {
+        return this.usuario + this.clave;
+    }
     }
 }

@@ -9,14 +9,14 @@ namespace TelnetC
 {
     class Mensaje
     {
-    public static String AUTENTIC_USER = "AUTENTIAPP";
-    public static String INFO_CLIENT = "INFOCLIENT";
-    public static String INSERT_CLIENT = "INSERTCLIE";
-    public static String INFO_PRODUCT = "INFOPRODUC";
-    public static String INSERT_PRODUCT = "INSERTPROD";
-    public static String INFO_FACT = "INFOFACTUR";
-    public static String INSERT_FACT = "INSERTFACT";
-    public static String VALIDA_CLIENT = "VALICLIENT";
+    public static readonly String AUTENTIC_USER = "AUTENTIAPP";
+    public static readonly String INFO_CLIENT = "INFOCLIENT";
+    public static readonly String INSERT_CLIENT = "INSERTCLIE";
+    public static readonly String INFO_PRODUCT = "INFOPRODUC";
+    public static readonly String INSERT_PRODUCT = "INSERTPROD";
+    public static readonly String INFO_FACT = "INFOFACTUR";
+    public static readonly String INSERT_FACT = "INSERTFACT";
+    public static readonly String VALIDA_CLIENT = "VALICLIENT";
     
     public static Boolean validaHash (String trama){        
         String cuerpo = trama.Substring(85, trama.Length);

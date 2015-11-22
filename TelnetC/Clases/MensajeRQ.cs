@@ -34,7 +34,7 @@ namespace TelnetC
     }
 
     public String asTexto() {
-        Int64 longitud = this.cuerpo.asTexto().Length;
+        int longitud = this.cuerpo.asTexto().Length;
         this.cabecera.setLongitudCuerpo(longitud.ToString());
         this.cabecera.setVerificacion(this.cuerpo.asTexto());
         return this.cabecera.asTexto() + this.cuerpo.asTexto();

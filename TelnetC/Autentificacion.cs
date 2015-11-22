@@ -10,15 +10,18 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using TelnetC.Clases;
 
 namespace TelnetC
 {
     public partial class Autentificacion : Form
     {
+        
         public Autentificacion()
         {
             InitializeComponent();
-            
+            //tmrEscuchar.Tick += new EventHandler();
+                        
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -28,31 +31,25 @@ namespace TelnetC
 
         private void button1_Click(object sender, EventArgs e)
         {
+            String usu= txt_Usuario.Text.ToString();
+            String clave = txt_Password.Text.ToString();
+             Timer tmrEscuchar = new Timer();
+             AutenticacionRQ aurq = new AutenticacionRQ();
+             aurq.setUsuario(usu);
+             aurq.setClave(clave);
+             MensajeRQ maurq = new MensajeRQ(Originador.CLIENTE, Mensaje.AUTENTIC_USER);
+             maurq.setCuerpo(aurq);
             
-            Inicio inicio = new Inicio();
+                 Conexion.escribir(Conexion.socketForServer, maurq.asTexto());
+             
+             
+     
+             
             
-            NetworkStream Stm = null;
-            byte[] bufferEscritura = null;
+        }
+        private void Autentificacion_Load(object sender, EventArgs e)
+        {
 
-            TcpClient tcpClnt = new TcpClient();
-
-            // Conecto el socket al servidor.
-            tcpClnt.Connect("127.0.0.1",4420);
-            Stm = tcpClnt.GetStream();
-
-            if (Stm.CanWrite)
-            {
-                String usu = txt_Usuario.Text.ToString();
-                String clave = txt_Password.ToString();
-                bufferEscritura = Encoding.ASCII.GetBytes(usu+"_"+clave);
-
-                if ((Stm != null))
-                {
-                    //Envio los datos al Servidor
-                    Stm.Write(bufferEscritura, 0, bufferEscritura.Length);
-                }
-            }
-            tcpClnt.Close();
         }
     }
 }
