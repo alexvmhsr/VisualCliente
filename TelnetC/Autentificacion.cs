@@ -33,18 +33,35 @@ namespace TelnetC
         {
             String usu= txt_Usuario.Text.ToString();
             String clave = txt_Password.Text.ToString();
-             Timer tmrEscuchar = new Timer();
+       
              AutenticacionRQ aurq = new AutenticacionRQ();
              aurq.setUsuario(usu);
              aurq.setClave(clave);
-             MensajeRQ maurq = new MensajeRQ(Originador.CLIENTE, Mensaje.AUTENTIC_USER);
+             MensajeRQ maurq = new MensajeRQ(Originador.getOriginador(Originador.CLIENTE), Mensaje.AUTENTIC_USER);
              maurq.setCuerpo(aurq);
-            
-                 Conexion.escribir(Conexion.socketForServer, maurq.asTexto());
              
-             
-     
-             
+             MessageBox.Show(maurq.asTexto(), "Mensaje",
+             MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+             Conexion.flujo(maurq.asTexto());
+
+             //String arr2 = Conexion.flujoRS();
+
+             //MessageBox.Show(arr2, "Respuesta",
+              //MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+             //modelo.addRow(arr2);    
+             EnvioRQ send = new EnvioRQ();
+             Conexion.flujo(send.construirMs(new Usuario(usu,clave)));
+             if (Conexion.flujoRS() == true)
+             {
+                 Formulario fact = new Formulario();
+                 fact.Show();
+             }
+             else
+             {
+              MessageBox.Show("Error", "Respuesta",
+              MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+             }
+  
             
         }
         private void Autentificacion_Load(object sender, EventArgs e)

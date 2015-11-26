@@ -8,6 +8,7 @@ namespace TelnetC.Clases
 {
     class AutenticacionRQ :  Cuerpo{
     private String usuario;
+        
 	private String clave;
 	
 	

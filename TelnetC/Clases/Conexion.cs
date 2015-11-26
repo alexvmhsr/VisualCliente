@@ -8,6 +8,8 @@ using System.IO;
 using TelnetC.Clases;
 using System.Net;
 using System.Timers;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace TelnetC.Clases
 {
@@ -17,7 +19,7 @@ namespace TelnetC.Clases
 
         public static Boolean Conectar(String IP, int puerto)
         {
-            
+
 
             try
             {
@@ -25,7 +27,7 @@ namespace TelnetC.Clases
                 //el server y el puerto.
                 socketForServer = new TcpClient();
                 socketForServer.Connect(IPAddress.Parse(IP), puerto);
-                
+
                 return (true);
             }
             catch
@@ -36,28 +38,86 @@ namespace TelnetC.Clases
             }
         }
 
-        public static void escribir(TcpClient cliente, String mens)
+        public static void flujo(String mens)
         {
             try
             {
-                NetworkStream netstream = cliente.GetStream();
+                NetworkStream netstream = socketForServer.GetStream();
                 StreamWriter escribir = new StreamWriter(netstream);
                 escribir.WriteLine(mens);
                 escribir.Flush();
             }
-            catch (Exception) { }        
+            catch (Exception) { }
         }
-        public static String leer(TcpClient cliente)
+        public static Boolean flujoRS()
         {
             try
             {
-                NetworkStream netstream = cliente.GetStream();
+                NetworkStream netstream = socketForServer.GetStream();
                 StreamReader leer = new StreamReader(netstream);
+                String trama = leer.ReadLine();
+                MessageBox.Show("Mensaje Serv:  "+trama, "Respuesta",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                if (Mensaje.validaHash(trama))
+                {
+                    if ("OK".Equals(trama.Substring(85)))
+                    {
 
-                return leer.ReadLine();
-            }
+                        MessageBox.Show("Ingreso correcto", "Respuesta",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                        return true;
+                    }
+                }
                 
-            catch (Exception) { return ""; }
+            }
+
+            catch (Exception) { 
+                MessageBox.Show("Error al Ingresar", "Respuesta",
+                MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return false; 
+            }
+            return false;
         }
+        public static String[] flujoRSc()
+        {
+        try {
+            NetworkStream netstream = socketForServer.GetStream();
+            StreamReader leer = new StreamReader(netstream);                
+            String trama=leer.ReadLine();
+
+            
+            if(Mensaje.validaHash(trama)){
+         
+               //if("OKO".equals(trama.substring(85,88))){
+                   String [] arr1=Regex.Split(trama,"OKO_");
+                   String [] arr2=arr1[1].Split('-');
+                   
+            
+            return arr2;
+               //} 
+           }   
+        }catch (IOException) {
+            return null;
+        }
+        return null;
+    }
+        public static String[] flujoRSp()
+        {
+        try {
+             NetworkStream netstream = socketForServer.GetStream();
+            StreamReader leer = new StreamReader(netstream);          
+            String trama=leer.ReadLine();
+           
+                   String [] arr1=Regex.Split(trama,"OKO_");
+                   String [] arr2=arr1[1].Split('-');
+                   
+                   
+            return arr2;
+               //} 
+           //}   
+        }catch (IOException) {
+           return null;
+        }
+    }
     }
 }

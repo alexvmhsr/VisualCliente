@@ -23,7 +23,7 @@ namespace TelnetC
         MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
         byte[] dataHash = md5.ComputeHash(Encoding.UTF8.GetBytes(cuerpo));
         String md5HashN = dataHash.ToString();       
-        String md5Hash = trama.Substring(53, 85);
+        String md5Hash = trama.Substring(53, 32);
 //        if(md5Hash.equals(md5HashN))
 //            System.out.println("correctooooo");
         return md5Hash.Equals(md5HashN);

@@ -64,6 +64,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(100, 20);
             this.txtIP.TabIndex = 4;
+            this.txtIP.Text = "127.0.0.1";
             // 
             // lblOK
             // 
@@ -124,6 +125,7 @@
             this.txtPuerto.Name = "txtPuerto";
             this.txtPuerto.Size = new System.Drawing.Size(100, 20);
             this.txtPuerto.TabIndex = 11;
+            this.txtPuerto.Text = "4420";
             // 
             // Inicio
             // 

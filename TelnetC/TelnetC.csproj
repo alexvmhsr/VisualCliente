@@ -52,8 +52,10 @@
     </Compile>
     <Compile Include="Clases\AutenticacionRQ.cs" />
     <Compile Include="Clases\Cabecera.cs" />
+    <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Cuerpo.cs" />
+    <Compile Include="Clases\EnvioRQ.cs" />
     <Compile Include="Clases\InformacionClienteRQ.cs" />
     <Compile Include="Clases\InformacionFacturaRQ.cs" />
     <Compile Include="Clases\InformacionProductoRQ.cs" />
@@ -61,7 +63,20 @@
     <Compile Include="Clases\IngresarFacturaRQ.cs" />
     <Compile Include="Clases\IngresarProductoRQ.cs" />
     <Compile Include="Clases\Originador.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\validaClienteRQ.cs" />
+    <Compile Include="Formulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario.Designer.cs">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IngresoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresoClientes.Designer.cs">
+      <DependentUpon>IngresoClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +90,12 @@
     <EmbeddedResource Include="Autentificacion.resx">
       <DependentUpon>Autentificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formulario.resx">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresoClientes.resx">
+      <DependentUpon>IngresoClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +108,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\Cuerpo.datasource" />
+    <None Include="Properties\DataSources\TelnetC.Clases.Conexion.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -19,8 +19,8 @@ namespace TelnetC
     public Cabecera(String tipoMensaje, String originador, String idMensaje) {
         this.tipoMensaje = tipoMensaje;
         this.originador = originador;
-        this.idMensaje = idMensaje;     
-        this.fecha = DateTime.Now.ToString("yyyyMMdd");
+        this.idMensaje = idMensaje;
+        this.fecha = DateTime.Now.ToString("yyyyMMddHHmmssfff");
        
     }
 
@@ -37,7 +37,7 @@ namespace TelnetC
     }
 
     public void setOriginador(String originador) {
-        char pad = '.';
+        char pad = '0';
         this.originador = originador.PadLeft(20, pad);
     }
 
@@ -62,7 +62,7 @@ namespace TelnetC
     }
 
     public void setLongitudCuerpo(String longitudCuerpo) {
-        char pad = '.';
+        char pad = '0';
         this.longitudCuerpo = longitudCuerpo.PadLeft(4, pad);
     }
 
@@ -71,16 +71,18 @@ namespace TelnetC
     }
 
     public void setVerificacion(String verificacion) {
-        //System.out.println(verificacion);
         MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
         byte[] dataHash = md5.ComputeHash(Encoding.UTF8.GetBytes(verificacion));
-        this.verificacion = dataHash.ToString();
+        StringBuilder sb = new StringBuilder();
+        foreach (byte b in dataHash)
+        {
+            sb.Append(b.ToString("x2").ToLower());
+        }
+        this.verificacion = sb.ToString();
     }
 
     
-    public String toString() {
-        return "Cabecera{" + "tipoMensaje=" + tipoMensaje + ", originador=" + originador + ", fecha=" + fecha + ", idMensaje=" + idMensaje + ", longitudCuerpo=" + longitudCuerpo + ", verificacion=" + verificacion + '}';
-    }
+
 
     public String asTexto() {
         StringBuilder sb = new StringBuilder();
